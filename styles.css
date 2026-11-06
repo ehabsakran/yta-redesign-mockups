@@ -87,7 +87,9 @@ p { margin: 0 0 1em; }
 .menu a { color: #fff; text-decoration: none; opacity: 0.9; }
 .menu a:hover, .menu a.active { opacity: 1; text-decoration: underline; text-underline-offset: 6px; text-decoration-color: var(--sage); }
 .menu .btn { opacity: 1; padding: 0.7rem 1.2rem; }
-.menu-toggle { display: none; }
+.menu-toggle { display: none; background: none; cursor: pointer; padding: 0; }
+.menu-toggle .i-close { display: none; }
+.nav { position: relative; }
 
 /* Hero */
 .hero {
@@ -274,8 +276,22 @@ p { margin: 0 0 1em; }
 /* Responsive */
 @media (max-width: 1180px) {
   .menu a:not(.btn) { display: none; }
-  .menu-toggle { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.4); }
+  .menu-toggle { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.4); margin-left: 1rem; }
   .menu-toggle svg { width: 20px; stroke: #fff; }
+  .nav .wrap { justify-content: flex-start; }
+  .nav .brand { margin-right: auto; }
+  /* open menu: full-width panel under the nav */
+  .site-header.open { background: var(--forest); }
+  .site-header.open .i-open { display: none; }
+  .site-header.open .i-close { display: block; }
+  .site-header.open .menu {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--forest); padding: 0.5rem 1.25rem 1.5rem;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.25);
+  }
+  .site-header.open .menu a:not(.btn) { display: block; padding: 0.95rem 0; font-size: 1.05rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .site-header.open .menu .btn { display: inline-flex; justify-content: center; margin-top: 1.2rem; }
   .tiles, .quotes, .posts, .ways, .prices { grid-template-columns: 1fr 1fr; }
   .facts { grid-template-columns: 1fr 1fr; }
   .article { grid-template-columns: minmax(0, 70ch); }

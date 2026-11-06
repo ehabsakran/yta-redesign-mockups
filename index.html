@@ -19,7 +19,7 @@
   </div></div>
   <nav class="nav"><div class="wrap">
     <a class="brand" href="index.html"><img src="images/logo.svg" alt=""><span><b>York Traditional Acupuncture</b><small>Tiziana Bertinotti · since 2011</small></span></a>
-    <div class="menu">
+    <div class="menu" id="site-menu">
       <a class="active" href="index.html">Home</a>
       <a href="#">New Patients</a>
       <a href="about.html">About</a>
@@ -28,9 +28,22 @@
       <a href="blog-post.html">Blog</a>
       <a href="#contact">Contact &amp; Fees</a>
       <a class="btn btn-sage" href="#contact">Book a consultation</a>
-      <span class="menu-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
     </div>
+    <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+      <svg class="i-open" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
   </div></nav>
+  <script>
+    (function () {
+      var header = document.currentScript.closest('.site-header');
+      var btn = header.querySelector('.menu-toggle');
+      function set(open) { header.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); }
+      btn.addEventListener('click', function () { set(!header.classList.contains('open')); });
+      header.querySelector('.menu').addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    })();
+  </script>
 </header>
 
 <section class="hero" style="--hero-img:url('images/hero-leaves.jpg')">
